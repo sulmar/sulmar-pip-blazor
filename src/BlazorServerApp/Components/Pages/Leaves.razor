@@ -5,12 +5,29 @@
 
 <h3>Urlopy</h3>
 
-<ul>
-    @foreach (var leave in leaves)
-    {
-        <li><strong>@leave.Employee.FirstName @leave.Employee.LastName</strong> @leave.From.ToShortDateString() - @leave.To.ToShortDateString() @leave.LeaveType</li>
-    }        
-</ul>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Od dnia</th>
+            <th>Do dnia</th>
+            <th>Rodzaj urlopu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var leave in leaves)
+        {
+            <tr>
+                <td>@leave.Employee.FirstName</td>
+                <td>@leave.Employee.LastName</td>
+                <td>@leave.From.ToShortDateString() </td>
+                <td>@leave.To.ToShortDateString()</td>
+                <td>@leave.LeaveType</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 @code {
 
