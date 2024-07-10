@@ -1,25 +1,24 @@
 ﻿@page "/leaves"
+@using Models
+@using Abstractions
+@inject ILeaveRepository repository
 
 <h3>Urlopy</h3>
 
 <ul>
-    @foreach(var item in items)
+    @foreach (var leave in leaves)
     {
-        <li>@item</li>
+        <li><strong>@leave.Employee.FirstName @leave.Employee.LastName</strong> @leave.From.ToShortDateString() - @leave.To.ToShortDateString() @leave.LeaveType</li>
     }        
 </ul>
 
 @code {
 
-    List<string> items = new List<string>();
+    List<Leave> leaves = new List<Leave>();
 
     protected override void OnInitialized()
     {
-        items.Add("Item 1");
-        items.Add("Item 2");
-        items.Add("Item 3");
-        items.Add("Item 4");
-        items.Add("Item 5");
+        leaves = repository.GetAll();
     }
 
 }

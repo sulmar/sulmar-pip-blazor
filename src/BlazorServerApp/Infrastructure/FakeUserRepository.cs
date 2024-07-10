@@ -1,5 +1,6 @@
 ﻿using BlazorServerApp.Abstractions;
 using BlazorServerApp.Models;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace BlazorServerApp.Infrastructure;
 
