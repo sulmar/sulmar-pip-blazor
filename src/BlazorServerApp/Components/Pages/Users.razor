@@ -1,0 +1,24 @@
+﻿@page "/users"
+@using BlazorServerApp.Abstractions
+@using Models
+@using Infrastructure
+@inject IUserRepository repository
+
+<h3>Users</h3>
+
+<ul>
+    @foreach(var user in users)
+    {
+        <li>@user.FirstName @user.LastName</li>
+    }
+</ul>
+
+@code {
+
+    List<User> users = new List<User>();
+
+    protected override void OnInitialized()
+    {
+        users = repository.GetAll();
+    }
+}

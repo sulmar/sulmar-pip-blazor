@@ -1,0 +1,25 @@
+﻿@page "/holidays"
+
+<h3>Holidays</h3>
+
+<ul>
+    @foreach(var item in items)
+    {
+        <li>@item</li>
+    }        
+</ul>
+
+@code {
+
+    List<string> items = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        items.Add("Item 1");
+        items.Add("Item 2");
+        items.Add("Item 3");
+        items.Add("Item 4");
+        items.Add("Item 5");
+    }
+
+}
