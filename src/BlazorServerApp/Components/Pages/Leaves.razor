@@ -13,6 +13,7 @@
             <th>Od dnia</th>
             <th>Do dnia</th>
             <th>Rodzaj urlopu</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
                 <td>@leave.From.ToShortDateString() </td>
                 <td>@leave.To.ToShortDateString()</td>
                 <td>@leave.LeaveType</td>
+                <td><span class="badge @leave.Status">@leave.Status</span></td>
             </tr>
         }
     </tbody>
