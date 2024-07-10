@@ -6,12 +6,24 @@
 
 <h3>Users</h3>
 
-<ul>
-    @foreach(var user in users)
-    {
-        <li>@user.FirstName @user.LastName</li>
-    }
-</ul>
+<table class="table table-bordered table-striped">
+    <thead>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+    </thead>
+
+    <tbody>
+       
+            @foreach (var user in users)
+            {
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+            </tr>
+            }
+        
+    </tbody>
+</table>
 
 @code {
 
