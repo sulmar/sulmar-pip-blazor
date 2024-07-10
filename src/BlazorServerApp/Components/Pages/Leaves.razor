@@ -24,7 +24,7 @@
                 <td>@leave.Employee.LastName</td>
                 <td>@leave.From.ToShortDateString() </td>
                 <td>@leave.To.ToShortDateString()</td>
-                <td>@leave.LeaveType</td>
+                <td><span class="badge @leave.LeaveType">@leave.LeaveType</span></td>
                 <td><span class="badge @leave.Status">@leave.Status</span></td>
             </tr>
         }
