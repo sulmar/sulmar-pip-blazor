@@ -14,6 +14,7 @@
             <th>Do dnia</th>
             <th>Rodzaj urlopu</th>
             <th>Status</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@
                 <td>@leave.To.ToShortDateString()</td>
                 <td><span class="badge @leave.LeaveType">@leave.LeaveType</span></td>
                 <td><span class="badge @leave.Status">@leave.Status</span></td>
+                <td><a href="/leaves/accept/@leave.Id" class="btn btn-primary">Akceptuj</a></td>
             </tr>
         }
     </tbody>
