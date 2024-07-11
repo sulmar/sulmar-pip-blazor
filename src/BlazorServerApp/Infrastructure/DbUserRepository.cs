@@ -49,13 +49,20 @@ public class DbUserRepository : IUserRepository
         
         if (reader.Read())
         {            
-            user = new User();
-            user.Id = reader.GetInt32(reader.GetOrdinal("UserId"));
-            user.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
-            user.LastName = reader.GetString(reader.GetOrdinal("LastName"));                       
+            user = Map(reader);    
         }
 
         _connection.Close();
+
+        return user;
+    }
+
+    private User Map(SqlDataReader reader)
+    {
+        var user = new User();
+        user.Id = reader.GetInt32(reader.GetOrdinal("UserId"));
+        user.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+        user.LastName = reader.GetString(reader.GetOrdinal("LastName"));
 
         return user;
     }
@@ -73,10 +80,8 @@ public class DbUserRepository : IUserRepository
 
         while (reader.Read())
         {
-            User user = new User();
-            user.Id = reader.GetInt32(reader.GetOrdinal("UserId"));
-            user.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
-            user.LastName = reader.GetString(reader.GetOrdinal("LastName"));
+            var user = Map(reader);
+
             users.Add(user);
         }
 
