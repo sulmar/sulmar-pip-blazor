@@ -3,6 +3,7 @@
 @using Models
 @using Infrastructure
 @inject IUserRepository repository
+@inject NavigationManager navigationManager
 
 <h3>Users</h3>
 
@@ -40,6 +41,8 @@
 
     private void Remove(int id)
     {
-        repository.Remove(id);        
+        repository.Remove(id);
+
+        navigationManager.Refresh(true);
     }
 }

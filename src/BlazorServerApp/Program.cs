@@ -1,6 +1,7 @@
 using BlazorServerApp.Abstractions;
 using BlazorServerApp.Components;
 using BlazorServerApp.Infrastructure;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+string connectionString = builder.Configuration.GetConnectionString("LeavesDb");
 
-builder.Services.AddSingleton<IUserRepository, FakeUserRepository>();
+builder.Services.AddScoped<IUserRepository, DbUserRepository>();
+builder.Services.AddScoped<SqlConnection>(sp => new SqlConnection(connectionString));
+
 builder.Services.AddSingleton<ILeaveRepository, FakeLeaveRepository>();
 
 var app = builder.Build();
