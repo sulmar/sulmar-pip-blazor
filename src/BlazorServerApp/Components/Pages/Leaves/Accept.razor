@@ -11,8 +11,8 @@
         <h5 class="card-title">od dnia @leave.From.ToShortDateString() do dnia @leave.To.ToShortDateString()</h5>
         <p class="card-text">@leave.LeaveType</p>
 
-        <a href="#" class="btn btn-danger">Odrzuć</a>
-        <a href="#" class="btn btn-primary">Akceptuj</a>
+        <button type="button" class="btn btn-danger" @onclick="Cancel" >Odrzuć</button>
+        <button class="btn btn-primary">Akceptuj</button>
     </div>
     <div class="card-footer text-body-secondary">
         2 days ago
@@ -28,7 +28,16 @@
 
     protected override void OnInitialized()
     {
+        Console.WriteLine("Hello World!");
+
         leave = repository.Get(Id);
+
+        
+    }
+
+    private void Cancel()
+    {
+        Console.WriteLine("Cancel Click");   
     }
 
 }
