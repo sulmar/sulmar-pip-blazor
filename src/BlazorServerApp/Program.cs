@@ -28,6 +28,7 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
+    .DisableAntiforgery()
     .AddInteractiveServerRenderMode();
 
 app.Run();

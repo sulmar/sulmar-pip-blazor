@@ -17,6 +17,20 @@ public class FakeUserRepository : IUserRepository
         users.Add(new User { Id = 5, FirstName = "John", LastName = "Spider" });
     }
 
+    public void Add(User user)
+    {
+        int id = 0;
+
+        if (users.Any())
+        {
+            id = users.Max(user => user.Id);
+        }
+
+        user.Id = ++id;
+
+        users.Add(user);
+    }
+
     public User Get(int id)
     {
         return users.SingleOrDefault(user => user.Id == id);
@@ -25,5 +39,12 @@ public class FakeUserRepository : IUserRepository
     public List<User> GetAll()
     {
         return users;
+    }
+
+    public void Remove(int id)
+    {
+        var user = Get(id);
+
+        users.Remove(user);
     }
 }

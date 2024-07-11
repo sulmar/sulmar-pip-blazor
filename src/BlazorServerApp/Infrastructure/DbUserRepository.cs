@@ -10,12 +10,22 @@ public class DbUserRepository : IUserRepository
         
     }
 
+    public void Add(User user)
+    {
+        throw new NotImplementedException();
+    }
+
     public User Get(int id)
     {
         throw new NotImplementedException();
     }
 
     public List<User> GetAll()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Remove(int id)
     {
         throw new NotImplementedException();
     }
