@@ -2,6 +2,7 @@
 @using Abstractions
 @using Models
 @inject ILeaveRepository repository
+@inject NavigationManager navigationManager
 
 <div class="card text-center">
     <div class="card-header">
@@ -11,11 +12,18 @@
         <h5 class="card-title">od dnia @leave.From.ToShortDateString() do dnia @leave.To.ToShortDateString()</h5>
         <p class="card-text">@leave.LeaveType</p>
 
-        <button type="button" class="btn btn-danger" @onclick="Cancel" >Odrzuć</button>
-        <button class="btn btn-primary">Akceptuj</button>
+        @if (leave.CanCancel())
+        {
+            <button class="btn btn-danger" @onclick="Cancel">Odrzuć</button>
+        }
+
+        @if (leave.CanAccept())
+        {
+            <button class="btn btn-primary" @onclick="Accept">Akceptuj</button>
+        }
     </div>
     <div class="card-footer text-body-secondary">
-        2 days ago
+        <span class="badge @leave.Status">@leave.Status</span>
     </div>
 </div>
 
@@ -31,13 +39,20 @@
         Console.WriteLine("Hello World!");
 
         leave = repository.Get(Id);
-
-        
     }
 
     private void Cancel()
     {
-        Console.WriteLine("Cancel Click");   
+        leave.Cancel();
+
+        navigationManager.NavigateTo("/leaves");
+    }
+
+    private void Accept()
+    {
+        leave.Accept();
+
+        navigationManager.NavigateTo("/leaves");
     }
 
 }
