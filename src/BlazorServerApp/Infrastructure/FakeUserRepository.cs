@@ -17,6 +17,11 @@ public class FakeUserRepository : IUserRepository
         users.Add(new User { Id = 5, FirstName = "John", LastName = "Spider" });
     }
 
+    public User Get(int id)
+    {
+        return users.SingleOrDefault(user => user.Id == id);
+    }
+
     public List<User> GetAll()
     {
         return users;

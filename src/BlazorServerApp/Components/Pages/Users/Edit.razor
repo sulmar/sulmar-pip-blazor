@@ -1,0 +1,32 @@
+﻿@page "/users/{Id:int}"
+@using BlazorServerApp.Abstractions
+@using BlazorServerApp.Models
+@inject IUserRepository repository
+@inject NavigationManager navigationManager
+
+<h3>Edit</h3>
+
+
+@if (user!=null)
+{
+    @user.FirstName @user.LastName
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private User user;
+
+    protected override void OnInitialized()
+    {
+        user = repository.Get(Id);
+
+        if (user == null)
+        {
+            navigationManager.NavigateTo("/users");
+        }
+    }
+
+}

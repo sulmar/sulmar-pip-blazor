@@ -8,20 +8,21 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-        <th>Imię</th>
-        <th>Nazwisko</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
     </thead>
 
     <tbody>
-       
-            @foreach (var user in users)
-            {
+
+        @foreach (var user in users)
+        {
             <tr>
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
+                <td><a href="/users/@user.Id" class="btn btn-primary">Edycja</a></td>
             </tr>
-            }
-        
+        }
+
     </tbody>
 </table>
 
