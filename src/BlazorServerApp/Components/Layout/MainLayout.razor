@@ -1,7 +1,20 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inherits LayoutComponentBase
 
 <header>
     <NavMenu />
+
+    <AuthorizeView>
+        <p>Hello, @context.User.Identity?.Name!</p>
+    </AuthorizeView>
+
+
+    
+
+    
+
+    
+
 </header>
 
 <main>

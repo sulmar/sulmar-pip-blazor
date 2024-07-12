@@ -1,8 +1,10 @@
 ﻿@page "/users/{Id:int}"
 @using BlazorServerApp.Abstractions
 @using BlazorServerApp.Models
+@using Microsoft.AspNetCore.Authorization
 @inject IUserRepository repository
 @inject NavigationManager navigationManager
+@attribute [Authorize(Roles = "abc")]
 
 <h3>Edit</h3>
 

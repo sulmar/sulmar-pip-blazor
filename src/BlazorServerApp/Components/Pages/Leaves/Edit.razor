@@ -1,6 +1,7 @@
 ﻿@page "/leaves/accept/{Id:int}"
 @using Abstractions
 @using Models
+@using Microsoft.AspNetCore.Components.Authorization
 @inject ILeaveRepository repository
 @inject NavigationManager navigationManager
 
@@ -12,15 +13,20 @@
         <h5 class="card-title">od dnia @leave.From.ToShortDateString() do dnia @leave.To.ToShortDateString()</h5>
         <p class="card-text">@leave.LeaveType</p>
 
-        @if (leave.CanCancel())
-        {
-            <button class="btn btn-danger" @onclick="Cancel">Odrzuć</button>
-        }
+        <AuthorizeView Roles="docker-users">
 
-        @if (leave.CanAccept())
-        {
-            <button class="btn btn-primary" @onclick="Accept">Akceptuj</button>
-        }
+            @if (leave.CanCancel())
+            {
+                <button class="btn btn-danger" @onclick="Cancel">Odrzuć</button>
+            }
+
+            @if (leave.CanAccept())
+            {
+                <button class="btn btn-primary" @onclick="Accept">Akceptuj</button>
+            }
+        </AuthorizeView>
+
+        
     </div>
     <div class="card-footer text-body-secondary">
         <span class="badge @leave.Status">@leave.Status</span>

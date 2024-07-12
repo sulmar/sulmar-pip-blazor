@@ -1,9 +1,18 @@
 using BlazorServerApp.Abstractions;
 using BlazorServerApp.Components;
 using BlazorServerApp.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+   .AddNegotiate();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -29,6 +38,9 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorComponents<App>()
     .DisableAntiforgery()
