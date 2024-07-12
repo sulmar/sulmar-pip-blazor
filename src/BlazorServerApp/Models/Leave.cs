@@ -1,10 +1,14 @@
-﻿namespace BlazorServerApp.Models;
+﻿using BlazorServerApp.Validations;
+
+namespace BlazorServerApp.Models;
 
 public class Leave : BaseEntity
 {
     public User Employee { get; set; }
-    public LeaveType LeaveType { get; set; }
+    public LeaveType LeaveType { get; set; }    
     public DateTime From { get; set; }
+
+    [DateGreaterThan(nameof(From))]
     public DateTime To { get; set; }
     public LeaveStatus Status { get; set; }
 
