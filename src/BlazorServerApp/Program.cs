@@ -12,9 +12,8 @@ builder.Services.AddRazorComponents()
 string connectionString = builder.Configuration.GetConnectionString("LeavesDb");
 
 builder.Services.AddScoped<IUserRepository, DbUserRepository>();
+builder.Services.AddScoped<ILeaveRepository, DbLeaveRepository>();
 builder.Services.AddScoped<SqlConnection>(sp => new SqlConnection(connectionString));
-
-builder.Services.AddSingleton<ILeaveRepository, FakeLeaveRepository>();
 
 var app = builder.Build();
 
