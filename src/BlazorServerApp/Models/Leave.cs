@@ -8,6 +8,13 @@ public class Leave : BaseEntity
     public DateTime To { get; set; }
     public LeaveStatus Status { get; set; }
 
+
+    public Leave()
+    {
+        From = DateTime.Today;
+        To = DateTime.Today;
+    }
+
     public void Cancel()
     {
         Status = LeaveStatus.Cancelled;

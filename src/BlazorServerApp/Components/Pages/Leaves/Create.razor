@@ -1,19 +1,89 @@
 ﻿@page "/leaves/create"
+@using BlazorServerApp.Abstractions
 @using BlazorServerApp.Models
+@inject IUserRepository userRepository
+@inject ILeaveRepository leaveRepository
 
 <h3>Create</h3>
 
 
-<form>
+<EditForm Model="Leave" OnValidSubmit="HandleValidSubmit">
+
+    <div class="form-group">
+        <label for="employee">Pracownik</label>
+
+        <InputSelect @bind-Value="selectedEmployeeId" @bind-Value:after="OnEmployeeSelected">
+
+            @foreach (var employee in employees)
+            {
+                <option value="@employee.Id">@employee.FirstName @employee.LastName</option>
+            }
+
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+        <label for="LeaveType">Rodzaj urlopu</label>
+        <InputRadioGroup @bind-Value="Leave.LeaveType">
+
+            @foreach (var leaveType in leaveTypes)
+            {
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <InputRadio Value="leaveType" class="form-check-input" />
+                        @leaveType
+                    </label>
+                </div>
+            }
+        </InputRadioGroup>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>
+                Od dnia
+                <InputDate @bind-Value="Leave.From" />
+            </label>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>
+                Do dnia
+                <InputDate @bind-Value="Leave.To" />
+            </label>
+        </div>
+    </div>
 
 
-</form>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
 
+</EditForm>
 
 
 @code {
 
-    private Leave leave = new Leave();
+    public Leave Leave { get; set; } = new Leave();
+
+    private List<User> employees;
+    private int selectedEmployeeId;
+
+    private LeaveType[] leaveTypes = Enum.GetValues<LeaveType>();
+
+    protected override void OnInitialized()
+    {
+        employees = userRepository.GetAll();
+
+    }
+
+    private void OnEmployeeSelected()
+    {
+        Leave.Employee = employees.SingleOrDefault(user => user.Id == selectedEmployeeId);
+    }
+
+    private void HandleValidSubmit()
+    {
+
+    }
 
 
 
