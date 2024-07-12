@@ -44,14 +44,18 @@
     private void Cancel()
     {
         leave.Cancel();
-
-        navigationManager.NavigateTo("/leaves");
+        Update();
     }
 
     private void Accept()
     {
         leave.Accept();
+        Update();
+    }
 
+    private void Update()
+    {
+        repository.Update(leave);
         navigationManager.NavigateTo("/leaves");
     }
 

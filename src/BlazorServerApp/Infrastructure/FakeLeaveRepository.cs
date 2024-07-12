@@ -20,6 +20,11 @@ public class FakeLeaveRepository : ILeaveRepository
         };
     }
 
+    public void Add(Leave leave)
+    {
+        throw new NotImplementedException();
+    }
+
     public Leave Get(int id)
     {
         return leaves.SingleOrDefault(p => p.Id == id);
@@ -28,5 +33,15 @@ public class FakeLeaveRepository : ILeaveRepository
     public List<Leave> GetAll()
     {
         return leaves;
+    }
+
+    public void Remove(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Update(Leave leave)
+    {
+        throw new NotImplementedException();
     }
 }
