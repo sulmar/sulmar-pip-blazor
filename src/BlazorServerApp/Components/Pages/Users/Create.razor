@@ -8,19 +8,37 @@
 
 
 <EditForm Model="User" OnValidSubmit="HandleValidSubmit">
+
+    <DataAnnotationsValidator />
+
+    <ValidationSummary />
+
     <div class="form-group">
         <label for="first-name">Imię</label>
         <InputText id="first-name" @bind-Value="User.FirstName" class="form-control" />
+        <ValidationMessage For="() => User.FirstName" />
     </div>
     
     <div class="form-group">
         <label for="last-name">Nazwisko</label>
         <InputText id="last-name" @bind-Value="User.LastName" class="form-control"  />
+        <ValidationMessage For="() => User.LastName" />
+    </div>
+
+    <div class="form-group">
+        <label for="last-name">Nazwisko</label>
+        <InputNumber id="last-name" @bind-Value="User.Age" class="form-control" />
+        <ValidationMessage For="() => User.Age" />
     </div>
 
     <div class="form-group">
         <label for="password">Hasło</label>
-        <input type="password" id="password" name="password" class="form-control" />
+        <InputText type="password" id="password" @bind-Value="User.Password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Potwierdź hasło</label>
+        <InputText type="password" id="confirm-password" @bind-Value="User.ConfirmPassword" class="form-control" />
     </div>
 
     <button type="submit" class="btn btn-primary">Zapisz</button>
