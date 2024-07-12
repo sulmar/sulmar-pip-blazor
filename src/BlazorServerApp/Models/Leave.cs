@@ -1,9 +1,11 @@
 ﻿using BlazorServerApp.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorServerApp.Models;
 
 public class Leave : BaseEntity
 {
+    [Required]
     public User Employee { get; set; }
     public LeaveType LeaveType { get; set; }    
     public DateTime From { get; set; }
