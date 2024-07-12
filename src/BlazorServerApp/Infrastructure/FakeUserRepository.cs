@@ -47,4 +47,9 @@ public class FakeUserRepository : IUserRepository
 
         users.Remove(user);
     }
+
+    public void Update(User user)
+    {
+        throw new NotImplementedException();
+    }
 }

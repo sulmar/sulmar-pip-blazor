@@ -6,11 +6,22 @@
 
 <h3>Edit</h3>
 
+<EditForm Model="user" OnValidSubmit="Save">
+    <div class="card text-center">
+        <div class="card-header">
+            Edycja użytkownika @user.FirstName @user.LastName
+        </div>
+        <div class="form-group">
+            <label for="first-name">Imię</label>
+            <InputText id="first-name" @bind-Value="user.FirstName" class="form-control" />
+            <label for="last-name">Nazwisko</label>
+            <InputText id="last-name" @bind-Value="user.LastName" class="form-control" />
+        </div>
+        <button class="btn btn-primary" @onclick="Save">Zapisz</button>
+        <button class="btn btn-danger" @onclick="Back">Wróć</button>
+    </div>
+</EditForm>
 
-@if (user!=null)
-{
-    @user.FirstName @user.LastName
-}
 
 @code {
 
@@ -31,6 +42,13 @@
 
     private void Back()
     {
+        navigationManager.NavigateTo("/users");
+    }
+
+
+    private void Save()
+    {
+        repository.Update(user);
         navigationManager.NavigateTo("/users");
     }
 

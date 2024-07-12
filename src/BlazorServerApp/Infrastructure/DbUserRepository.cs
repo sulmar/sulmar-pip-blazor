@@ -103,4 +103,20 @@ public class DbUserRepository : IUserRepository
 
         _connection.Close();
     }
+
+    public void Update(User user)
+    {
+        string sql = "UPDATE dbo.Users SET FirstName = @FirstName, LastName = @LastName WHERE UserId = @UserId";
+
+        SqlCommand command = new SqlCommand(sql, _connection);
+        command.Parameters.AddWithValue("@UserId", user.Id);
+        command.Parameters.AddWithValue("@FirstName", user.FirstName);
+        command.Parameters.AddWithValue("@LastName", user.LastName);
+
+        _connection.Open();
+
+        object primaryKeyValue = command.ExecuteScalar();
+
+        _connection.Close();
+    }
 }
